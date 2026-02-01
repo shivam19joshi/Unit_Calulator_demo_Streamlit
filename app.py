@@ -5,57 +5,72 @@ st.set_page_config(page_title="💖 Proposal Game", layout="centered")
 
 html_code = """
 <style>
-body {
-    background-color: #cdeeee;
+/* Full screen teal background */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #7fd1c7;
 }
 
+/* Center white card */
 #card {
     background-color: white;
-    width: 400px;
-    padding: 30px;
+    width: 380px;
+    padding: 25px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    margin: auto;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    margin: 40px auto;
     text-align: center;
 }
 
+/* Title */
 #card h1 {
     color: #ff4b4b;
+    font-size: 26px;
 }
 
+/* Image control */
+#card img {
+    width: 220px;
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+}
+
+/* Button container */
 #container {
     position: relative;
-    height: 150px;
-    margin-top: 20px;
+    height: 120px;
+    margin-top: 10px;
 }
 
-#yes {
-    font-size: 28px;
-    padding: 20px 50px;
-    border-radius: 40px;
+/* SAME size buttons */
+button {
+    font-size: 18px;
+    padding: 12px 28px;
+    border-radius: 30px;
     border: none;
-    background-color: #ff4b4b;
-    color: white;
     cursor: pointer;
 }
 
+/* Yes button */
+#yes {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+/* No button */
 #no {
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    border: none;
     background-color: #777;
     color: white;
     position: absolute;
-    cursor: pointer;
 }
 </style>
 
 <div id="card">
     <h1>💍 Will You Marry Me, XYZ? 💖</h1>
 
-    <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg"
-         width="250">
+    <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg">
 
     <div id="container">
         <button id="yes" onclick="sayYes()">YES ❤️</button>
@@ -69,8 +84,8 @@ body {
 const noBtn = document.getElementById("no");
 
 noBtn.addEventListener("mouseover", function () {
-    const x = Math.random() * 250;
-    const y = Math.random() * 100;
+    const x = Math.random() * 220;
+    const y = Math.random() * 80;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 });
