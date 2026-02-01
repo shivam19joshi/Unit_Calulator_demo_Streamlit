@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="💖 Proposal Game", layout="wide")
+st.set_page_config(page_title="areyouserious", layout="wide")
 
 # Remove Streamlit padding
 st.markdown(
@@ -101,13 +101,13 @@ button {
 <body>
 <div class="wrapper">
     <div id="card">
-        <h1>💍 Will You Marry Me, XYZ? 💖</h1>
+        <h1>💍 Will You Marry Me, Purvi? 💍</h1>
 
         <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg">
 
         <div id="container">
             <button id="yes" onclick="sayYes()">YES ❤️</button>
-            <button id="no">NO 💔</button>
+            <button id="no">NO </button>
         </div>
     </div>
 </div>
