@@ -11,7 +11,7 @@ html_code = """
 <html>
 <head>
 <style>
-/* Force full viewport teal background */
+/* Remove scroll everywhere */
 html, body {
     width: 100%;
     height: 100%;
@@ -22,62 +22,62 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-/* Center card vertically + horizontally */
+/* Full screen flex center */
 .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
 }
 
-/* White card */
+/* Medium white card */
 #card {
     background-color: white;
-    width: 380px;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    width: 420px;
+    padding: 30px 25px;
+    border-radius: 22px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     text-align: center;
 }
 
-/* Title */
+/* Question */
 #card h1 {
     color: #ff4b4b;
     font-size: 26px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-/* Image fix */
+/* Image standard size */
 #card img {
-    width: 200px;
+    width: 230px;
     max-width: 100%;
     height: auto;
-    margin: 15px 0;
+    margin: 10px 0 15px 0;
 }
 
-/* Button container */
+/* Button area */
 #container {
     position: relative;
-    height: 120px;
-    margin-top: 15px;
+    height: 110px;
 }
 
 /* Same size buttons */
 button {
     font-size: 18px;
-    padding: 12px 28px;
+    padding: 12px 30px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
 }
 
-/* Yes */
+/* YES */
 #yes {
     background-color: #ff4b4b;
     color: white;
 }
 
-/* No */
+/* NO */
 #no {
     background-color: #777;
     color: white;
@@ -106,7 +106,7 @@ button {
 const noBtn = document.getElementById("no");
 
 noBtn.addEventListener("mouseover", function () {
-    const x = Math.random() * 220;
+    const x = Math.random() * 240;
     const y = Math.random() * 80;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
@@ -122,8 +122,8 @@ function sayYes() {
 
     (function frame() {
         confetti({
-            particleCount: 6,
-            spread: 70,
+            particleCount: 7,
+            spread: 80,
             origin: { y: 0.6 }
         });
         if (Date.now() < end) {
@@ -136,5 +136,5 @@ function sayYes() {
 </html>
 """
 
-# IMPORTANT: Big height to avoid black area
-components.html(html_code, height=1200)
+# Very important: exact viewport height, no scroll
+components.html(html_code, height=850)
