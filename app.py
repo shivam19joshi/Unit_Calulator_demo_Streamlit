@@ -1,9 +1,9 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="areyouserious", layout="wide")
+st.set_page_config(page_title="💖 Proposal Game", layout="wide")
 
-# Remove Streamlit padding completely
+# Remove Streamlit padding
 st.markdown(
     """
     <style>
@@ -20,10 +20,11 @@ html_code = """
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 html, body {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: #7fd1c7;
@@ -31,7 +32,7 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
-/* Fullscreen center */
+/* Full screen center */
 .wrapper {
     width: 100vw;
     height: 100vh;
@@ -40,10 +41,11 @@ html, body {
     justify-content: center;
 }
 
-/* Medium balanced card */
+/* White card */
 #card {
-    width: 480px;
-    padding: 36px;
+    width: 460px;
+    max-width: 90%;
+    padding: 32px;
     background: white;
     border-radius: 26px;
     box-shadow: 0 20px 45px rgba(0,0,0,0.3);
@@ -52,16 +54,17 @@ html, body {
 
 /* Question */
 #card h1 {
-    font-size: 28px;
+    font-size: 26px;
     color: #ff4b4b;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
-/* Image standard */
+/* Image */
 #card img {
-    width: 240px;
+    width: 230px;
+    max-width: 100%;
     height: auto;
-    margin: 15px 0 20px 0;
+    margin: 10px 0 18px 0;
 }
 
 /* Button playground */
@@ -71,7 +74,7 @@ html, body {
     height: 200px;
 }
 
-/* Same size buttons */
+/* Buttons */
 button {
     font-size: 18px;
     padding: 14px 34px;
@@ -98,13 +101,13 @@ button {
 <body>
 <div class="wrapper">
     <div id="card">
-        <h1>Will You Marry Me, Purvi? 💍</h1>
+        <h1>💍 Will You Marry Me, XYZ? 💖</h1>
 
         <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg">
 
         <div id="container">
             <button id="yes" onclick="sayYes()">YES ❤️</button>
-            <button id="no">NO </button>
+            <button id="no">NO 💔</button>
         </div>
     </div>
 </div>
@@ -115,12 +118,26 @@ button {
 const noBtn = document.getElementById("no");
 const container = document.getElementById("container");
 
-noBtn.addEventListener("mouseover", () => {
+function moveNo() {
     const maxX = container.clientWidth - noBtn.offsetWidth;
     const maxY = container.clientHeight - noBtn.offsetHeight;
 
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
+}
+
+/* Desktop */
+noBtn.addEventListener("mouseover", moveNo);
+
+/* Mobile */
+noBtn.addEventListener("touchstart", function(e) {
+    e.preventDefault();
+    moveNo();
+});
+
+noBtn.addEventListener("touchmove", function(e) {
+    e.preventDefault();
+    moveNo();
 });
 
 function sayYes() {
@@ -130,7 +147,11 @@ function sayYes() {
 
     const end = Date.now() + 3000;
     (function frame() {
-        confetti({ particleCount: 8, spread: 90, origin: { y: 0.6 } });
+        confetti({
+            particleCount: 8,
+            spread: 90,
+            origin: { y: 0.6 }
+        });
         if (Date.now() < end) requestAnimationFrame(frame);
     })();
 }
@@ -139,9 +160,5 @@ function sayYes() {
 </html>
 """
 
-# 🔥 THIS IS THE KEY LINE
-components.html(
-    html_code,
-    height=800,
-    scrolling=False   # ← THIS KILLS SCROLL
-)
+# Critical: disable iframe scroll
+components.html(html_code, height=800, scrolling=False)
