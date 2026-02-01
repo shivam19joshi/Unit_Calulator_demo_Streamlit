@@ -1,20 +1,15 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(
-    page_title="💖 Proposal Game",
-    layout="wide"
-)
+st.set_page_config(page_title="💖 Proposal Game", layout="wide")
 
-# Remove Streamlit default padding & scroll
+# Remove Streamlit padding completely
 st.markdown(
     """
     <style>
-    .main {
-        padding: 0rem !important;
-    }
-    iframe {
-        overflow: hidden !important;
+    .block-container {
+        padding: 0 !important;
+        margin: 0 !important;
     }
     </style>
     """,
@@ -26,18 +21,17 @@ html_code = """
 <html>
 <head>
 <style>
-/* Lock everything */
 html, body {
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    width: 100%;
-    height: 100%;
     background-color: #7fd1c7;
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
 
-/* Full screen center */
+/* Fullscreen center */
 .wrapper {
     width: 100vw;
     height: 100vh;
@@ -46,13 +40,13 @@ html, body {
     justify-content: center;
 }
 
-/* Proper medium card */
+/* Medium balanced card */
 #card {
     width: 480px;
-    padding: 35px;
+    padding: 36px;
     background: white;
-    border-radius: 25px;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+    border-radius: 26px;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
     text-align: center;
 }
 
@@ -63,36 +57,36 @@ html, body {
     margin-bottom: 15px;
 }
 
-/* Image balanced */
+/* Image standard */
 #card img {
     width: 240px;
     height: auto;
     margin: 15px 0 20px 0;
 }
 
-/* Button playground (BIG space) */
+/* Button playground */
 #container {
     position: relative;
     width: 100%;
-    height: 180px;
+    height: 200px;
 }
 
-/* Buttons same size */
+/* Same size buttons */
 button {
     font-size: 18px;
-    padding: 14px 32px;
+    padding: 14px 34px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
 }
 
-/* Yes */
+/* YES */
 #yes {
     background-color: #ff4b4b;
     color: white;
 }
 
-/* No */
+/* NO */
 #no {
     background-color: #777;
     color: white;
@@ -121,15 +115,12 @@ button {
 const noBtn = document.getElementById("no");
 const container = document.getElementById("container");
 
-noBtn.addEventListener("mouseover", function () {
+noBtn.addEventListener("mouseover", () => {
     const maxX = container.clientWidth - noBtn.offsetWidth;
     const maxY = container.clientHeight - noBtn.offsetHeight;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
 });
 
 function sayYes() {
@@ -137,18 +128,10 @@ function sayYes() {
         '<h1 style="color:#ff4b4b;">🎉 YAYYY!!! 💖💍</h1>' +
         '<h2>You just made me the happiest person alive 😭❤️</h2>';
 
-    const duration = 3000;
-    const end = Date.now() + duration;
-
+    const end = Date.now() + 3000;
     (function frame() {
-        confetti({
-            particleCount: 8,
-            spread: 90,
-            origin: { y: 0.6 }
-        });
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
-        }
+        confetti({ particleCount: 8, spread: 90, origin: { y: 0.6 } });
+        if (Date.now() < end) requestAnimationFrame(frame);
     })();
 }
 </script>
@@ -156,5 +139,9 @@ function sayYes() {
 </html>
 """
 
-# IMPORTANT: viewport-sized iframe
-components.html(html_code, height=1000)
+# 🔥 THIS IS THE KEY LINE
+components.html(
+    html_code,
+    height=800,
+    scrolling=False   # ← THIS KILLS SCROLL
+)
