@@ -104,7 +104,7 @@ button {
 
         <div id="container">
             <button id="yes" onclick="sayYes()">YES ❤️</button>
-            <button id="no">NO 💔</button>
+            <button id="no">NO </button>
         </div>
     </div>
 </div>
