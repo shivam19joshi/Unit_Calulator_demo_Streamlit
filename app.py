@@ -17,7 +17,7 @@ st.markdown(
 st.markdown(
     """
     <div style="text-align:center;">
-        <https://github.com/shivam19joshi/Unit_Calulator_demo_Streamlit/blob/main/cute_cat.jpg"
+        <img src=""
              width="300">
     </div>
     """,
