@@ -1,25 +1,42 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="💖 Proposal Game", layout="centered")
+st.set_page_config(
+    page_title="💖 Proposal Game",
+    layout="wide"
+)
 
 html_code = """
+<!DOCTYPE html>
+<html>
+<head>
 <style>
-/* Full screen teal background */
+/* Force full viewport teal background */
 html, body {
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     background-color: #7fd1c7;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/* Center white card */
+/* Center card vertically + horizontally */
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* White card */
 #card {
     background-color: white;
     width: 380px;
     padding: 25px;
     border-radius: 20px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-    margin: 40px auto;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     text-align: center;
 }
 
@@ -27,11 +44,12 @@ html, body {
 #card h1 {
     color: #ff4b4b;
     font-size: 26px;
+    margin-bottom: 10px;
 }
 
-/* Image control */
+/* Image fix */
 #card img {
-    width: 220px;
+    width: 200px;
     max-width: 100%;
     height: auto;
     margin: 15px 0;
@@ -41,10 +59,10 @@ html, body {
 #container {
     position: relative;
     height: 120px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
-/* SAME size buttons */
+/* Same size buttons */
 button {
     font-size: 18px;
     padding: 12px 28px;
@@ -53,28 +71,32 @@ button {
     cursor: pointer;
 }
 
-/* Yes button */
+/* Yes */
 #yes {
     background-color: #ff4b4b;
     color: white;
 }
 
-/* No button */
+/* No */
 #no {
     background-color: #777;
     color: white;
     position: absolute;
 }
 </style>
+</head>
 
-<div id="card">
-    <h1>💍 Will You Marry Me, XYZ? 💖</h1>
+<body>
+<div class="wrapper">
+    <div id="card">
+        <h1>💍 Will You Marry Me, XYZ? 💖</h1>
 
-    <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg">
+        <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg">
 
-    <div id="container">
-        <button id="yes" onclick="sayYes()">YES ❤️</button>
-        <button id="no">NO 💔</button>
+        <div id="container">
+            <button id="yes" onclick="sayYes()">YES ❤️</button>
+            <button id="no">NO 💔</button>
+        </div>
     </div>
 </div>
 
@@ -110,6 +132,9 @@ function sayYes() {
     })();
 }
 </script>
+</body>
+</html>
 """
 
-components.html(html_code, height=520)
+# IMPORTANT: Big height to avoid black area
+components.html(html_code, height=1200)
