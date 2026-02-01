@@ -6,78 +6,93 @@ st.set_page_config(
     layout="wide"
 )
 
+# Remove Streamlit default padding & scroll
+st.markdown(
+    """
+    <style>
+    .main {
+        padding: 0rem !important;
+    }
+    iframe {
+        overflow: hidden !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 html_code = """
 <!DOCTYPE html>
 <html>
 <head>
 <style>
-/* Remove scroll everywhere */
+/* Lock everything */
 html, body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
     background-color: #7fd1c7;
     overflow: hidden;
     font-family: Arial, sans-serif;
 }
 
-/* Full screen flex center */
+/* Full screen center */
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Medium white card */
+/* Proper medium card */
 #card {
-    background-color: white;
-    width: 420px;
-    padding: 30px 25px;
-    border-radius: 22px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    width: 480px;
+    padding: 35px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.3);
     text-align: center;
 }
 
 /* Question */
 #card h1 {
+    font-size: 28px;
     color: #ff4b4b;
-    font-size: 26px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
-/* Image standard size */
+/* Image balanced */
 #card img {
-    width: 230px;
-    max-width: 100%;
+    width: 240px;
     height: auto;
-    margin: 10px 0 15px 0;
+    margin: 15px 0 20px 0;
 }
 
-/* Button area */
+/* Button playground (BIG space) */
 #container {
     position: relative;
-    height: 110px;
+    width: 100%;
+    height: 180px;
 }
 
-/* Same size buttons */
+/* Buttons same size */
 button {
     font-size: 18px;
-    padding: 12px 30px;
+    padding: 14px 32px;
     border-radius: 30px;
     border: none;
     cursor: pointer;
 }
 
-/* YES */
+/* Yes */
 #yes {
     background-color: #ff4b4b;
     color: white;
 }
 
-/* NO */
+/* No */
 #no {
     background-color: #777;
     color: white;
@@ -104,10 +119,15 @@ button {
 
 <script>
 const noBtn = document.getElementById("no");
+const container = document.getElementById("container");
 
 noBtn.addEventListener("mouseover", function () {
-    const x = Math.random() * 240;
-    const y = Math.random() * 80;
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 });
@@ -117,13 +137,13 @@ function sayYes() {
         '<h1 style="color:#ff4b4b;">🎉 YAYYY!!! 💖💍</h1>' +
         '<h2>You just made me the happiest person alive 😭❤️</h2>';
 
-    var duration = 3000;
-    var end = Date.now() + duration;
+    const duration = 3000;
+    const end = Date.now() + duration;
 
     (function frame() {
         confetti({
-            particleCount: 7,
-            spread: 80,
+            particleCount: 8,
+            spread: 90,
             origin: { y: 0.6 }
         });
         if (Date.now() < end) {
@@ -136,5 +156,5 @@ function sayYes() {
 </html>
 """
 
-# Very important: exact viewport height, no scroll
-components.html(html_code, height=850)
+# IMPORTANT: viewport-sized iframe
+components.html(html_code, height=1000)
