@@ -20,7 +20,6 @@ st.markdown(
         <img src="https://raw.githubusercontent.com/shivam19joshi/Unit_Calulator_demo_Streamlit/main/cute_cat.jpg"
      width="300">
 
-             width="300">
     </div>
     """,
     unsafe_allow_html=True
