@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # Page config
 st.set_page_config(page_title="Car Horsepower Analysis", layout="wide")
 
-st.title("🚗 Car Horsepower Analysis")
+st.title(" Car Model Analysis")
 st.write("Select a car brand to visualize model-wise horsepower")
 
 # Load data
